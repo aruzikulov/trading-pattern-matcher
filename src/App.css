@@ -1,57 +1,9 @@
-.App {
-  max-width: 1200px;
-  margin: 0 auto;
+body {
+  margin: 0;
   padding: 20px;
-  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
 }
 
-.controls {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-select, button {
-  padding: 8px 12px;
-  font-size: 16px;
-}
-
-button {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-button:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
-}
-
-.chart-container {
-  margin-bottom: 40px;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-.similar-patterns {
-  margin-top: 40px;
-}
-
-.patterns-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  gap: 20px;
-}
-
-.pattern {
-  padding: 15px;
-  border: 1px solid #eee;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-h1, h2, h3 {
-  color: #333;
+* {
+  box-sizing: border-box;
 }
