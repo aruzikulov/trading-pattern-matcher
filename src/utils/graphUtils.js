@@ -1,14 +1,14 @@
 // Preprocess the API response into a usable format
 export const preprocessData = (data, timeframe) => {
-  const timeSeries = data['Time Series (Daily)'];
+  const timeSeries = data['Monthly Time Series'] || data['Time Series (Daily)'];
   if (!timeSeries) {
     throw new Error('Invalid API response: Missing Time Series data');
   }
 
   const dates = Object.keys(timeSeries).sort((a, b) => new Date(b) - new Date(a)); // Sort dates descending
-  const recentDates = dates.slice(0, timeframe);
+  const selectedDates = dates.slice(0, timeframe);
 
-  return recentDates.map(date => ({
+  return selectedDates.map(date => ({
     date,
     close: parseFloat(timeSeries[date]['4. close']), // Ensure numeric values
   }));

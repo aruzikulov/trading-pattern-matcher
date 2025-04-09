@@ -11,7 +11,7 @@ const App = () => {
 
   const handleSearch = async () => {
     try {
-      const data = await fetchHistoricalData(symbol);
+      const data = await fetchHistoricalData(symbol, 'MONTHLY'); // Fetch monthly data for extended history
       if (!data) {
         alert('Failed to fetch data. Please check the stock symbol or API key.');
         return;
@@ -20,8 +20,8 @@ const App = () => {
       // Preprocess data for the current graph
       const processedData = preprocessData(data, timeframe);
 
-      // Preprocess a larger dataset for historical comparison
-      const historicalData = preprocessData(data, 100); // Use a larger dataset
+      // Preprocess a larger dataset for historical comparison (e.g., 20 years)
+      const historicalData = preprocessData(data, 240); // 20 years of monthly data
 
       // Find the most similar graph
       const mostSimilar = findSimilarGraph(processedData, historicalData, timeframe);
