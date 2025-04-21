@@ -37,7 +37,7 @@ const App = () => {
 
   return (
     <div>
-      <h1>Trading Graph Comparison</h1>
+      <h1>Murod Trader Graph Comparison</h1>
       <input
         type="text"
         placeholder="Enter stock symbol"
@@ -50,10 +50,10 @@ const App = () => {
         value={timeframe}
         onChange={(e) => setTimeframe(Number(e.target.value))}
       />
-      <button onClick={handleSearch}>Search</button>
+      <button onClick={handleSearch}>o'xshashini top</button>
 
-      {currentGraph && <GraphDisplay graph={currentGraph} title="Current Graph" />}
-      {similarGraph && <GraphDisplay graph={similarGraph} title="Most Similar Graph" />}
+      {currentGraph && <GraphDisplay graph={currentGraph} title="Xozirgi Graph" />}
+      {similarGraph && <GraphDisplay graph={similarGraph} title="Eng o'xshash Graph" />}
     </div>
   );
 };
