@@ -5,12 +5,16 @@ export const preprocessData = (data, timeframe) => {
     throw new Error('Invalid API response: Missing Time Series data');
   }
 
-  const dates = Object.keys(timeSeries).sort((a, b) => new Date(b) - new Date(a)); // Sort dates descending
-  const selectedDates = dates.slice(0, timeframe);
+  const dates = Object.keys(timeSeries)
+    .sort((a, b) => new Date(a) - new Date(b)); // Sort dates ascending (oldest to newest)
+  const selectedDates = dates.slice(-timeframe); // Take the last N dates (most recent N in ascending order)
 
   return selectedDates.map(date => ({
     date,
-    close: parseFloat(timeSeries[date]['4. close']), // Ensure numeric values
+    open: parseFloat(timeSeries[date]['1. open']),
+    high: parseFloat(timeSeries[date]['2. high']),
+    low: parseFloat(timeSeries[date]['3. low']),
+    close: parseFloat(timeSeries[date]['4. close']),
   }));
 };
 
