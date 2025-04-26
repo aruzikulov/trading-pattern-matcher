@@ -56,6 +56,7 @@ const App = () => {
         <GalaxyBackground />
         <div className="login-overlay">
           <form onSubmit={handleLogin} className="login-form">
+          <h2>Murod Trader</h2>
             <h2>Parolni kiriting</h2>
             <input
               type="password"
