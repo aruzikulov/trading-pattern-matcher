@@ -10,6 +10,19 @@ const App = () => {
   const [timeframe, setTimeframe] = useState(7);
   const [currentGraph, setCurrentGraph] = useState(null);
   const [similarGraph, setSimilarGraph] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [password, setPassword] = useState('');
+
+  const PASSWORD = 'murod777'; // Change this to your desired password
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (password === PASSWORD) {
+      setIsAuthenticated(true);
+    } else {
+      alert('Incorrect password');
+    }
+  };
 
   const handleSearch = async () => {
     try {
@@ -36,6 +49,24 @@ const App = () => {
       alert('An error occurred. Please try again.');
     }
   };
+
+  if (!isAuthenticated) {
+    return (
+      <div className="App">
+        <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '20vh' }}>
+          <h2>Parolni kiriting</h2>
+          <input
+            type="password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            placeholder="Parol"
+            style={{ padding: '8px', fontSize: '16px', marginBottom: '10px' }}
+          />
+          <button type="submit" style={{ padding: '8px 16px', fontSize: '16px' }}>Login</button>
+        </form>
+      </div>
+    );
+  }
 
   return (
     <>
