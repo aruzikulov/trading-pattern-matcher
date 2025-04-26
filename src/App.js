@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import GalaxyBackground from './components/GalaxyBackground';
 import { fetchHistoricalData } from './utils/api';
 import { preprocessData, findSimilarGraph } from './utils/graphUtils';
 import GraphDisplay from './components/GraphDisplay';
+import './App.css';
 
 const App = () => {
   const [symbol, setSymbol] = useState('');
@@ -36,25 +38,30 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h1>Murod Trader Graph Comparison</h1>
-      <input
-        type="text"
-        placeholder="Enter stock symbol"
-        value={symbol}
-        onChange={(e) => setSymbol(e.target.value)}
-      />
-      <input
-        type="number"
-        placeholder="Timeframe (days)"
-        value={timeframe}
-        onChange={(e) => setTimeframe(Number(e.target.value))}
-      />
-      <button onClick={handleSearch}>o'xshashini top</button>
+    <>
+      <GalaxyBackground />
+      <div className="App">
+        <div className="app-content">
+          <h1>Murod Trader Graph Comparison</h1>
+          <input
+            type="text"
+            placeholder="stock nomini yozing"
+            value={symbol}
+            onChange={(e) => setSymbol(e.target.value)}
+          />
+          <input
+            type="number"
+            placeholder="Timeframe (days)"
+            value={timeframe}
+            onChange={(e) => setTimeframe(Number(e.target.value))}
+          />
+          <button onClick={handleSearch}>o'xshashini top</button>
 
-      {currentGraph && <GraphDisplay graph={currentGraph} title="Xozirgi Graph" />}
-      {similarGraph && <GraphDisplay graph={similarGraph} title="Eng o'xshash Graph" />}
-    </div>
+          {currentGraph && <GraphDisplay graph={currentGraph} title="Xozirgi Graph" />}
+          {similarGraph && <GraphDisplay graph={similarGraph} title="Eng o'xshash Graph" />}
+        </div>
+      </div>
+    </>
   );
 };
 
