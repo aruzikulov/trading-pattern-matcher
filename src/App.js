@@ -52,19 +52,21 @@ const App = () => {
 
   if (!isAuthenticated) {
     return (
-      <div className="App">
-        <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '20vh' }}>
-          <h2>Parolni kiriting</h2>
-          <input
-            type="password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            placeholder="Parol"
-            style={{ padding: '8px', fontSize: '16px', marginBottom: '10px' }}
-          />
-          <button type="submit" style={{ padding: '8px 16px', fontSize: '16px' }}>Login</button>
-        </form>
-      </div>
+      <>
+        <GalaxyBackground />
+        <div className="login-overlay">
+          <form onSubmit={handleLogin} className="login-form">
+            <h2>Parolni kiriting</h2>
+            <input
+              type="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              placeholder="Parol"
+            />
+            <button type="submit">Login</button>
+          </form>
+        </div>
+      </>
     );
   }
 
