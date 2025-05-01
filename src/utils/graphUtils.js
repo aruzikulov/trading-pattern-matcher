@@ -49,3 +49,16 @@ export const findSimilarGraph = (currentGraph, historicalData, timeframe) => {
 
   return mostSimilarGraph;
 };
+
+// Get the steps after the similar graph
+export const getStepsAfterGraph = (historicalData, similarGraph, timeframe) => {
+  const startIndex = historicalData.findIndex(
+    (data) => data.date === similarGraph[similarGraph.length - 1].date
+  );
+
+  if (startIndex === -1 || startIndex + timeframe >= historicalData.length) {
+    return [];
+  }
+
+  return historicalData.slice(startIndex + 1, startIndex + 1 + timeframe);
+};

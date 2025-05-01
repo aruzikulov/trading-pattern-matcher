@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import GalaxyBackground from './components/GalaxyBackground';
 import { fetchHistoricalData } from './utils/api';
-import { preprocessData, findSimilarGraph } from './utils/graphUtils';
+import { preprocessData, findSimilarGraph, getStepsAfterGraph } from './utils/graphUtils';
 import GraphDisplay from './components/GraphDisplay';
 import './App.css';
 
@@ -10,6 +10,7 @@ const App = () => {
   const [timeframe, setTimeframe] = useState(7);
   const [currentGraph, setCurrentGraph] = useState(null);
   const [similarGraph, setSimilarGraph] = useState(null);
+  const [afterStepsGraph, setAfterStepsGraph] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
 
@@ -41,9 +42,13 @@ const App = () => {
       // Find the most similar graph
       const mostSimilar = findSimilarGraph(processedData, historicalData, timeframe);
 
+      // Get steps after the most similar graph
+      const afterSteps = getStepsAfterGraph(historicalData, mostSimilar, timeframe);
+
       // Update state
       setCurrentGraph(processedData);
       setSimilarGraph(mostSimilar);
+      setAfterStepsGraph(afterSteps);
     } catch (error) {
       console.error('Error:', error);
       alert('An error occurred. Please try again.');
@@ -93,6 +98,7 @@ const App = () => {
 
           {currentGraph && <GraphDisplay graph={currentGraph} title="Xozirgi Graph" />}
           {similarGraph && <GraphDisplay graph={similarGraph} title="Eng o'xshash Graph" />}
+          {afterStepsGraph && <GraphDisplay graph={afterStepsGraph} title="Keyingi Qadamlar Graph" />}
         </div>
       </div>
     </>
